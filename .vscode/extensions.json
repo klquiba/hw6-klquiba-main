@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    // Next two *should* be VSCode Python deps, but just to be sure...
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    // Markdown (GitHub)
+    "bierner.markdown-preview-github-styles",
+		"goessner.mdmath",
+  ]
+}

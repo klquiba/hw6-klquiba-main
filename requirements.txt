@@ -1,0 +1,6 @@
+#pytest  # Future use
+#pandas
+#matplotlib
+#jupyter
+#ipywidgets
+#nbclient

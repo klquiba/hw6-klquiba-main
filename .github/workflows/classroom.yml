@@ -1,0 +1,34 @@
+name: GitHub Classroom Workflow
+
+on: 
+  push:
+    branches:
+    - main
+    - master
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  autograde:
+    # XXX Name should be "Autograding"; GitHub Classroom seems to depend on this!
+    name: Autograding
+    if: "!contains(github.event.head_commit.message, '[noci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4 
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - uses: clusterhack/github-autograde@v2
+      - uses: actions/upload-artifact@v3
+        with:
+          name: autograde
+          path: ${{ github.workspace }}/autograde.json
+          if-no-files-found: ignore
+          retention-days: 30
+

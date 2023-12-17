@@ -1,0 +1,93 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": {
+			// Update 'VARIANT' to pick a Python version: 3, 3.11, 3.10, 3.9, 3.8, 3.7, 3.6
+			// Append -bullseye or -buster to pin to an OS version.
+			// Use -bullseye variants on local on arm64/Apple Silicon.
+			"VARIANT": "3.11-bullseye"
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "python --version",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				// Python paths
+				"python.defaultInterpreterPath": "/home/vscode/venv/bin/python",
+				"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+				"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+				"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+				"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+				"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+				"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+				"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+				"jupyter.kernels.filter": [
+					{
+						"type": "pythonEnvironment",
+						"path": "/usr/bin/python3"
+					},
+					{
+						"type": "pythonEnvironment",
+						"path": "/usr/local/bin/python"
+					}
+				],
+
+				// Python tooling
+				"python.languageServer": "Pylance",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": false,
+				"python.linting.flake8Enabled": false,
+				"python.testing.promptToConfigure": false,
+
+				// Editor
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"editor.rulers": [80, 100],
+
+				// Terminal
+				"terminal.integrated.shellIntegration.enabled": true,
+				"python.terminal.activateEnvironment": true,
+				"python.terminal.activateEnvInCurrentTerminal": true,
+				"terminal.integrated.defaultProfile.linux": "zsh",
+
+				// UI
+				"window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+				"workbench.tree.indent": 12,
+				"explorer.excludeGitIgnore": true
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				//"egomobile.vscode-powertools",
+				"bierner.markdown-preview-github-styles",
+				"goessner.mdmath"
+			]
+		}
+	},
+
+	"remoteUser": "vscode",
+
+	"containerEnv": {
+		// Set timezone
+		"TZ": "America/New_York",
+		// Make root available for prompt customization
+		"VSCODE_WORKSPACE_ROOT": "${containerWorkspaceFolder}"
+	}
+}

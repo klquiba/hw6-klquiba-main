@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "type": "external",
+      "name": "Unit tests",
+      "setup": "",
+      "run": "python3 -m tests.hwtest.runner autograde.json",
+      "timeout": 2,
+      "resultsFile": "autograde.json"
+    }
+  ]
+}
